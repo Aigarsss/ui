@@ -1,0 +1,18 @@
+.container {
+  max-width: 768px;
+  margin: auto;
+}
+
+.hoveringButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-3);
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow: none;
+  }
+}

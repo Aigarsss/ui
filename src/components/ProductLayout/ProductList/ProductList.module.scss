@@ -1,6 +1,12 @@
 .table {
   width: 100%;
 
+  thead {
+    position: sticky;
+    top: 0;
+    background: white; // todo liquid glass?
+  }
+
   tr {
     border-bottom: 1px solid var(--color-neutral-3);
     cursor: pointer;
