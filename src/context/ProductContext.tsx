@@ -18,6 +18,7 @@ const ProductContext = createContext<{
 	selectedFilters: string[];
 	setSelectedFilters: Dispatch<SetStateAction<string[]>>;
 	initialProducts: Device[];
+	error: string;
 }>({
 	filteredProducts: [],
 	layoutType: "list",
@@ -26,6 +27,7 @@ const ProductContext = createContext<{
 	selectedFilters: [],
 	setSelectedFilters: () => undefined,
 	initialProducts: [],
+	error: "",
 });
 
 const ProductContextProvider = ({ children }: { children: ReactElement }) => {
@@ -33,10 +35,10 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 	const [filteredProducts, setFilteredProducts] = useState<Device[]>([]);
 	const [layoutType, setLayoutType] = useState<"list" | "grid">("list");
 	const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+	const [error, setError] = useState("");
 
 	useEffect(() => {
 		const fetchProducts = async () => {
-			// todo, zod?
 			const res = await fetch(
 				"https://static.ui.com/fingerprint/ui/public.json",
 			);
@@ -45,7 +47,9 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 			if (data.devices) {
 				setInitialProducts(data.devices);
 			} else {
-				console.error("TODO");
+				setError(
+					"⚠️ File schema might have changed. Please contact UIDB team for details. ⚠️",
+				);
 			}
 		};
 		fetchProducts();
@@ -86,6 +90,7 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 			selectedFilters,
 			setSelectedFilters,
 			initialProducts,
+			error,
 		};
 	}, [
 		filteredProducts,
@@ -93,6 +98,7 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 		availableLines,
 		selectedFilters,
 		initialProducts,
+		error,
 	]);
 
 	return <ProductContext value={value}>{children}</ProductContext>;
