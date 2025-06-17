@@ -16,11 +16,11 @@ const ReadmePage = () => {
 					the product page.
 				</li>
 				<li>
-					Search for now works with "starts with" logic, because thats how I
-					understood it from the design.
+					Wasnt clear if search should be available only with "starts with" or
+					any string. I did "any".
 				</li>
 				<li>
-					Wasnt sure how json details should be show, went for the easiest
+					Wasnt sure how json details should be show, went for the simplest
 					solution.
 				</li>
 			</ul>

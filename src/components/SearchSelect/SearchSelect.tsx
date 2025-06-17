@@ -25,10 +25,27 @@ const SearchSelect: React.FC<SearchSelectProps> = ({ placeholder }) => {
 	useEffect(() => {
 		setSearchResults(
 			filteredProducts.filter((item) =>
-				item.product.name.toLowerCase().startsWith(value.toLowerCase()),
+				item.product.name.toLowerCase().includes(value.toLowerCase()),
 			),
 		);
 	}, [filteredProducts, value]);
+
+	const highlightMatch = (text: string) => {
+		if (!value) return text;
+
+		const index = text.toLowerCase().indexOf(value.toLowerCase());
+		if (index === -1) return text;
+
+		return (
+			<>
+				{text.slice(0, index)}
+				<span className="underline font-bold">
+					{text.slice(index, index + value.length)}
+				</span>
+				{text.slice(index + value.length)}
+			</>
+		);
+	};
 
 	return (
 		<div className={classes.container} ref={ref}>
@@ -59,11 +76,6 @@ const SearchSelect: React.FC<SearchSelectProps> = ({ placeholder }) => {
 				onChange={(e) => {
 					setValue(e.target.value);
 				}}
-				// onKeyDown={(e) => {
-				// 	if (e.key === "Enter") {
-				// 		console.log({ value });
-				// 	}
-				// }}
 			/>
 			{value && (
 				<button
@@ -88,6 +100,11 @@ const SearchSelect: React.FC<SearchSelectProps> = ({ placeholder }) => {
 			)}
 			{isSearchOpen && (
 				<div className={classes.dropdown}>
+					{searchResults.length === 0 && (
+						<div className="text-sm text-text-2">
+							No results found, try again
+						</div>
+					)}
 					{searchResults.map((item) => {
 						return (
 							<Link
@@ -95,11 +112,8 @@ const SearchSelect: React.FC<SearchSelectProps> = ({ placeholder }) => {
 								key={item.id}
 								className="flex justify-betweent py-1.5 hover:bg-neutral-2"
 							>
-								<span className="flex flex-auto text-text-2 text-sm">
-									{value && (
-										<span className="underline font-bold">{value}</span>
-									)}
-									{item.product.name.slice(value.length)}
+								<span className="text-text-2 text-sm whitespace-nowrap max-w-[200px] overflow-hidden overflow-ellipsis">
+									{highlightMatch(item.product.name)}
 								</span>
 								<span className="flex flex-auto justify-end text-text-3 text-sm">
 									{item.product.abbrev}
