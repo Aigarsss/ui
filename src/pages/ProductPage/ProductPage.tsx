@@ -23,6 +23,20 @@ const HoveringButton: React.FC<HoveringButtonProps> = ({
 	);
 };
 
+interface ProductTextLineProps {
+	text1: string | undefined;
+	text2: string | number | undefined;
+}
+
+const ProductTextLine: React.FC<ProductTextLineProps> = ({ text1, text2 }) => {
+	return (
+		<div className="flex justify-between py-2">
+			<span>{text1}</span>
+			<span className="text-text-3 max-w-[100px]">{text2}</span>
+		</div>
+	);
+};
+
 const ProductPage: React.FC = () => {
 	const [isShowingJson, setIsShowingJson] = useState(false);
 	const { filteredProducts } = useProductContext();
@@ -119,48 +133,84 @@ const ProductPage: React.FC = () => {
 				<div className="flex">
 					{/*<img src={`https://images.svc.ui.com/?u=https%3A%2F%2Fstatic.ui.com%2Ffingerprint%2Fui%2Fimages%2F${productOfInterest.id}%2Fdefault%2${productOfInterest.images.default}.png&w=${36}&q=75`} alt=""/>*/}
 					{/*<img src="https://images.svc.ui.com/?u=https%3A%2F%2Fstatic.ui.com%2Ffingerprint%2Fui%2Fimages%2Fed67d43e-2d5c-4928-ace8-edf984baeff1%2Fdefault%2 F977c1f8c477549aeb7238727fd4ecc62.png&w=36&q=75" alt=""/>*/}
-					<div className="w-1/2">
+					<div className={classes.imageContainer}>
 						<img
 							src="https://images.unsplash.com/photo-1749810364373-5e2f18bb842a?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 							alt=""
 						/>
 					</div>
 
-					<div>
-						<div>{productOfInterest?.product.name}</div>
-						<div>{productOfInterest?.line.name}</div>
+					<div className={classes.descriptionContainer}>
+						<div className="text-2xl font-semibold mb-1">
+							{productOfInterest?.product.name}
+						</div>
+						<div className="text-text-3 mb-4">
+							{productOfInterest?.line.name}
+						</div>
 
-						<div className="flex justify-between">
-							<span>Product line</span>
-							<span>{productOfInterest?.line.name}</span>
-						</div>
-						<div className="flex justify-between">
-							<span>ID</span>
-							<span>{productOfInterest?.line.id}</span>
-						</div>
-						<div className="flex justify-between">
-							<span>Short name</span>
-							<span>{productOfInterest?.shortnames.join(", ")}</span>
-						</div>
-						<div className="flex justify-between">
-							<span>Max power</span>
-							<span>xxx</span>
-						</div>
-						<div className="flex justify-between">
-							<span>Speed</span>
-							<span>xxx</span>
-						</div>
-						<div className="flex justify-between">
-							<span>Number of ports</span>
-							<span>xxx</span>
+						{[
+							{
+								text1: "Product line",
+								text2: productOfInterest?.line.name,
+							},
+							{
+								text1: "ID",
+								text2: productOfInterest?.line.id,
+							},
+							{
+								text1: "Short name",
+								text2: productOfInterest?.shortnames.join(", "),
+							},
+						].map((item) => {
+							return (
+								<ProductTextLine
+									key={item.text1}
+									text1={item.text1}
+									text2={item.text2}
+								/>
+							);
+						})}
+
+						{/* TODO, fix ts errors */}
+						{Object.keys(productOfInterest?.unifi?.network?.radios ?? {})
+							.length !== 0 && (
+							<>
+								<ProductTextLine
+									text1="Max power"
+									text2={`${Math.max(...Object.values(productOfInterest?.unifi.network.radios).map((radio) => radio.maxPower))} W`}
+								/>
+								<ProductTextLine
+									text1="Speed"
+									text2={`${Math.max(...Object.values(productOfInterest?.unifi.network.radios).map((radio) => radio.maxSpeedMegabitsPerSecond))} Mbps`}
+								/>
+							</>
+						)}
+
+						{productOfInterest?.unifi?.network?.numberOfPorts && (
+							<ProductTextLine
+								text1="Number of ports"
+								text2={productOfInterest?.unifi.network.numberOfPorts}
+							/>
+						)}
+
+						<div className="mt-4">
+							<button
+								type="button"
+								onClick={() => setIsShowingJson(!isShowingJson)}
+								className="py-2 text-blue-6 hover:text-blue-7 cursor-pointer"
+							>
+								{isShowingJson
+									? "Hide JSON details"
+									: "See all details as JSON"}
+							</button>
 						</div>
 					</div>
 				</div>
 
-				<div>see all details as json</div>
-
 				{isShowingJson && (
-					<pre>{JSON.stringify(productOfInterest, undefined, 2)}</pre>
+					<pre className="bg-neutral-3 text-sm mt-8">
+						{JSON.stringify(productOfInterest, undefined, 2)}
+					</pre>
 				)}
 			</div>
 		</div>

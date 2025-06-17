@@ -2,7 +2,7 @@ export interface Device {
 	guids: unknown[];
 	icon: {
 		id: string;
-		resolutions: any[];
+		resolutions: [number, number][];
 	};
 	id: string;
 	images: {
@@ -22,13 +22,15 @@ export interface Device {
 	sku: string;
 	sysid: string;
 	sysids: string[];
-	triplets: any;
-	uisp?: {
-		bleServices: any;
-		firmware: any;
-		line: string;
-		nameLegacy: string[];
+	triplets: {
+		[key: string]: string;
 	};
+	// uisp?: {
+	// 	bleServices: any;
+	// 	firmware: any;
+	// 	line: string;
+	// 	nameLegacy: string[];
+	// };
 	unifi?: {
 		adoptability: "adoptable" | "???";
 		network: {
@@ -45,26 +47,18 @@ export interface Device {
 			// "minimumFirmwareRequired": string,
 			// "model": string,
 			numberOfPorts: number;
-			// "radios": {
-			// 	"6e": {
-			// 		"gain": 6,
-			// 		"maxPower": 29,
-			// 		"maxSpeedMegabitsPerSecond": 11528
-			// 	},
-			// 	"na": {
-			// 		"gain": 6,
-			// 		"maxPower": 29,
-			// 		"maxSpeedMegabitsPerSecond": 8648
-			// 	},
-			// 	"ng": {
-			// 		"gain": 4,
-			// 		"maxPower": 22,
-			// 		"maxSpeedMegabitsPerSecond": 688
-			// 	}
-			// },
+			radios: {
+				[key: string]: {
+					gain: number;
+					maxPower: number;
+					maxSpeedMegabitsPerSecond: number;
+				};
+			};
 			// "systemIdHexadecimal": "a697",
 			// "type": "uap"
 		};
 	};
-	videos: any;
+	videos: {
+		[key: string]: string;
+	};
 }

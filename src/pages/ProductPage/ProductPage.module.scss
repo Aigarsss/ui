@@ -1,6 +1,27 @@
 .container {
   max-width: 768px;
   margin: auto;
+
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 292px;
+    height: 292px;
+    background: var(--color-neutral-1);
+    border-radius: 8px;
+    margin-right: 32px;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .descriptionContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
 }
 
 .hoveringButton {
