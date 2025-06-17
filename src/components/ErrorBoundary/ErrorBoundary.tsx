@@ -3,6 +3,7 @@ import * as React from "react";
 import type { ErrorInfo } from "react";
 
 class ErrorBoundary extends React.Component {
+	// @ts-ignore
 	constructor(props) {
 		super(props);
 		this.state = { hasError: false };

@@ -13,7 +13,12 @@ const NavBar = () => {
 				</Link>
 			</div>
 
-			<div className="text-text-3 mr-8">Author</div>
+			<div className="text-text-3 mr-8">
+				Aigars Uplejs |{" "}
+				<Link to="/readme" className="underline">
+					Readme
+				</Link>
+			</div>
 		</div>
 	);
 };

@@ -9,7 +9,6 @@ import {
 	useState,
 } from "react";
 import type { Device } from "../types/types";
-import Logo from "../components/Logo";
 
 const ProductContext = createContext<{
 	filteredProducts: Device[];
@@ -18,6 +17,7 @@ const ProductContext = createContext<{
 	availableLines: { id: string; name: string }[];
 	selectedFilters: string[];
 	setSelectedFilters: Dispatch<SetStateAction<string[]>>;
+	initialProducts: Device[];
 }>({
 	filteredProducts: [],
 	layoutType: "list",
@@ -25,6 +25,7 @@ const ProductContext = createContext<{
 	availableLines: [],
 	selectedFilters: [],
 	setSelectedFilters: () => undefined,
+	initialProducts: [],
 });
 
 const ProductContextProvider = ({ children }: { children: ReactElement }) => {
@@ -63,8 +64,6 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 		}
 	}, [selectedFilters, initialProducts]);
 
-	console.log({ selectedFilters });
-
 	const availableLines = initialProducts
 		// Finds the first match (self is the original array). If not the first match, filter out
 		.filter(
@@ -86,8 +85,15 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 			availableLines,
 			selectedFilters,
 			setSelectedFilters,
+			initialProducts,
 		};
-	}, [filteredProducts, layoutType, availableLines, selectedFilters]);
+	}, [
+		filteredProducts,
+		layoutType,
+		availableLines,
+		selectedFilters,
+		initialProducts,
+	]);
 
 	return <ProductContext value={value}>{children}</ProductContext>;
 };

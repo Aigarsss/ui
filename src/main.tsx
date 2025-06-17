@@ -7,6 +7,7 @@ import Layout from "./Layout";
 import ProductContextProvider from "./context/ProductContext";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
+import ReadmePage from "./pages/ReadmePage";
 
 scan({
 	enabled: true,
@@ -20,6 +21,7 @@ createRoot(document.getElementById("root") as HTMLElement).render(
 					<Route path="/" element={<Layout />}>
 						<Route index element={<HomePage />} />
 						<Route path="/:productId" element={<ProductPage />} />
+						<Route path="/readme" element={<ReadmePage />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

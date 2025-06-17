@@ -1,0 +1,48 @@
+.container {
+  position: relative;
+
+  svg {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+  }
+
+  .input {
+    border-radius: 4px;
+    background: var(--color-neutral-2);
+    color: var(--color-neutral-8);
+    padding: 6px 8px 6px 32px;
+    font-size: 14px;
+    width: 320px;
+
+    &::placeholder {
+      color: var(--color-neutral-8);
+    }
+
+    &:hover {
+      background: var(--color-neutral-3);
+    }
+  }
+
+  .clear {
+    position: absolute;
+    right: 35px;
+    cursor: pointer;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 38px;
+    width: 100%;
+    background: white;
+    max-width: 344px;
+    border-radius: 8px;
+    overflow-y: scroll;
+    max-height: 112px;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    box-shadow: 0 16px 32px 0 rgba(28,30,45, 0.2);
+  }
+}
