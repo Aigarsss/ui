@@ -1,6 +1,7 @@
 import React from "react";
 import { useProductContext } from "../../context/ProductContext";
 import Icon from "../Icon";
+import Filter from "../Filter";
 
 const FilterAndSearch = () => {
 	const { filteredProducts, setLayoutType, layoutType } = useProductContext();
@@ -62,7 +63,8 @@ const FilterAndSearch = () => {
 						/>
 					</svg>
 				</Icon>
-				<span>Filter</span>
+
+				<Filter />
 			</div>
 		</div>
 	);

@@ -5,6 +5,15 @@
     position: sticky;
     top: 0;
     background: white; // todo liquid glass?
+
+    tr {
+      cursor: default;
+
+      &:hover{
+        background-color: white;
+      }
+
+    }
   }
 
   tr {
@@ -31,7 +40,5 @@
       width: 670px;
       padding: 6px 8px;
     }
-
-
   }
 }
