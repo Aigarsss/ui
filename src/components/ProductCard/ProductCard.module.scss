@@ -1,0 +1,38 @@
+.container {
+  border: 1px solid var(--color-neutral-3);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    background: var(--color-neutral-1);
+
+    .imageContainer {
+      background: var(--color-neutral-2);
+    }
+  }
+
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background: var(--color-neutral-1);
+    position: relative;
+
+    .line {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      background: white;
+      border-radius: 4px;
+      color: var(--color-blue-6);
+      padding: 2px 4px;
+    }
+  }
+
+  .descriptionContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}

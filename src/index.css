@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme static {
+	--color-neutral-1: #f9fafa;
+	--color-neutral-2: #f4f5f6;
+	--color-neutral-3: #ededf0;
+	--color-neutral-8: #878788;
+	--color-neutral-10: #50565e;
+
+	--color-gray-2: #f4f5f6;
+	--color-gray-4: #bdbdbd;
+
+	--color-text-2: #ededf0;
+	--color-text-3: #808893;
+
+	--color-blue-6: #006fff;
+	--color-blue-7: #0059cc;
+}
