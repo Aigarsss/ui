@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import { Link, redirect, useParams } from "react-router";
 import type * as React from "react";
 import { useProductContext } from "../../context/ProductContext";
 import { type ReactNode, useState } from "react";
@@ -72,6 +72,8 @@ const ProductPage: React.FC = () => {
 		return filteredProducts[index + 1].id;
 	};
 
+	if (!productOfInterest) redirect("/");
+
 	return (
 		<div>
 			<div className="flex justify-between items-center h-[64px] mx-8">
@@ -131,11 +133,9 @@ const ProductPage: React.FC = () => {
 
 			<div className={classes.container}>
 				<div className="flex">
-					{/*<img src={`https://images.svc.ui.com/?u=https%3A%2F%2Fstatic.ui.com%2Ffingerprint%2Fui%2Fimages%2F${productOfInterest.id}%2Fdefault%2${productOfInterest.images.default}.png&w=${36}&q=75`} alt=""/>*/}
-					{/*<img src="https://images.svc.ui.com/?u=https%3A%2F%2Fstatic.ui.com%2Ffingerprint%2Fui%2Fimages%2Fed67d43e-2d5c-4928-ace8-edf984baeff1%2Fdefault%2 F977c1f8c477549aeb7238727fd4ecc62.png&w=36&q=75" alt=""/>*/}
 					<div className={classes.imageContainer}>
 						<img
-							src="https://images.unsplash.com/photo-1749810364373-5e2f18bb842a?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+							src={`https://images.svc.ui.com/?u=https%3A%2F%2Fstatic.ui.com%2Ffingerprint%2Fui%2Fimages%2F${productOfInterest.id}%2Fdefault%2F${productOfInterest?.images.default}.png&w=275&q=75`}
 							alt=""
 						/>
 					</div>
@@ -208,7 +208,7 @@ const ProductPage: React.FC = () => {
 				</div>
 
 				{isShowingJson && (
-					<pre className="bg-neutral-3 text-sm mt-8">
+					<pre className="bg-neutral-3 text-sm mt-8 p-4">
 						{JSON.stringify(productOfInterest, undefined, 2)}
 					</pre>
 				)}

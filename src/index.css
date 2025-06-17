@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme static {
+	--default-font-family: Inter;
+
 	--color-neutral-1: #f9fafa;
 	--color-neutral-2: #f4f5f6;
 	--color-neutral-3: #ededf0;
@@ -10,7 +12,8 @@
 	--color-gray-2: #f4f5f6;
 	--color-gray-4: #bdbdbd;
 
-	--color-text-2: #ededf0;
+	--color-text-1: rgba(0, 0, 0, 0.85);
+	--color-text-2: rgba(0, 0, 0, 0.65);
 	--color-text-3: #808893;
 
 	--color-blue-6: #006fff;

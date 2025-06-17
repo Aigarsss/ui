@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useProductContext } from "../../../context/ProductContext";
 import classes from "./ProductList.module.scss";
+import { getImageUrl } from "../../../utils/getImageUrl";
 
 const ProductList = () => {
 	const { filteredProducts } = useProductContext();
@@ -12,34 +13,36 @@ const ProductList = () => {
 			<thead>
 				<tr>
 					<th />
-					<th>Product line</th>
-					<th>Name</th>
+					<th className="text-sm text-text-1 font-medium">Product line</th>
+					<th className="text-sm text-text-1 font-medium">Name</th>
 				</tr>
 			</thead>
 
 			<tbody>
-				{filteredProducts?.map((device) => {
+				{filteredProducts?.map((product) => {
 					return (
 						<tr
-							key={device.id}
+							key={product.id}
 							tabIndex={0}
-							onClick={() => navigate(`/${device.id}`)}
+							onClick={() => navigate(`/${product.id}`)}
 							onKeyDown={(e) => {
 								if (e.key === "Enter") {
-									navigate(`/${device.id}`);
+									navigate(`/${product.id}`);
 								}
 							}}
 						>
 							<td>
-								<img
-									src={`https://static.ui.com/fingerprint/ui/icons/${device.icon.id}_32x32.png`}
-									// src={`https://images.svc.ui.com/?u=https%3A%2F%2Fstatic.ui.com%2Ffingerprint%2Fui%2Fimages%2Fed67d43e-2d5c-4928-ace8-edf984baeff1%2Fdefault%2  F977c1f8c477549aeb7238727fd4ecc62.png&w=36&q=75`}
-									// src="https://static.ui.com/fingerprint/ui/icons/1a431afe-91c6-400f-bd34-c2eeffec263d_32x32.png"
-									alt=""
-								/>
+								<div className="flex justify-center items-center">
+									<img
+										src={getImageUrl(product.id, product.images.default)}
+										width={20}
+										height={20}
+										alt=""
+									/>
+								</div>
 							</td>
-							<td>{device.line.name}</td>
-							<td>{device.product.name}</td>
+							<td className="text-sm text-text-2">{product.line.name}</td>
+							<td className="text-sm text-text-3">{product.product.name}</td>
 						</tr>
 					);
 				})}
