@@ -96,7 +96,10 @@ const SearchSelect: React.FC<SearchSelectProps> = ({ placeholder }) => {
 								className="flex justify-betweent py-1.5 hover:bg-neutral-2"
 							>
 								<span className="flex flex-auto text-text-2 text-sm">
-									{item.product.name}
+									{value && (
+										<span className="underline font-bold">{value}</span>
+									)}
+									{item.product.name.slice(value.length)}
 								</span>
 								<span className="flex flex-auto justify-end text-text-3 text-sm">
 									{item.product.abbrev}
