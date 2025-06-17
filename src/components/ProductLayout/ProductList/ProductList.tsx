@@ -1,24 +1,35 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useProductContext } from "../../../context/ProductContext";
+import classes from "./ProductList.module.scss";
 
 const ProductList = () => {
 	const { filteredProducts } = useProductContext();
+	const navigate = useNavigate();
 
 	return (
-		<table>
+		<table className={classes.table}>
 			<thead>
 				<tr>
 					<th />
 					<th>Product line</th>
-					<th>name</th>
+					<th>Name</th>
 				</tr>
 			</thead>
 
 			<tbody>
 				{filteredProducts?.map((device) => {
 					return (
-						<tr key={device.id}>
+						<tr
+							key={device.id}
+							tabIndex={0}
+							onClick={() => navigate(`/${device.id}`)}
+							onKeyDown={(e) => {
+								if (e.key === "Enter") {
+									navigate(`/${device.id}`);
+								}
+							}}
+						>
 							<td>
 								<img
 									src={`https://static.ui.com/fingerprint/ui/icons/${device.icon.id}_32x32.png`}
@@ -27,12 +38,8 @@ const ProductList = () => {
 									alt=""
 								/>
 							</td>
-							<td>
-								<Link to={`/${device.id}`}>{device.line.name}</Link>
-							</td>
-							<td>
-								<Link to={`/${device.id}`}>{device.product.name}</Link>
-							</td>
+							<td>{device.line.name}</td>
+							<td>{device.product.name}</td>
 						</tr>
 					);
 				})}

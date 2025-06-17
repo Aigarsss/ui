@@ -19,9 +19,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 			</div>
 
 			<div className={classes.descriptionContainer}>
-				<h3>{product.product.name}</h3>
+				<h3 className="text-lg">{product.product.name}</h3>
 
-				<span>{product.shortnames.join(", ")}</span>
+				<span className="text-text-3 text-sm">
+					{product.shortnames.join(", ")}
+				</span>
 			</div>
 		</Link>
 	);

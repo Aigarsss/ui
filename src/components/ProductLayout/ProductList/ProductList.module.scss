@@ -1,0 +1,31 @@
+.table {
+  width: 100%;
+
+  tr {
+    border-bottom: 1px solid var(--color-neutral-3);
+    cursor: pointer;
+
+    &:hover{
+      background-color: var(--color-neutral-2);
+    }
+
+    td, th {
+      text-align: start;
+    }
+
+    th {
+      padding: 6px 8px;
+    }
+
+    td:nth-child(1) {
+      width: 36px;
+    }
+
+    td:nth-child(2), td:nth-child(3) {
+      width: 670px;
+      padding: 6px 8px;
+    }
+
+
+  }
+}
