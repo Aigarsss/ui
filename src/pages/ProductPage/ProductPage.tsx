@@ -4,6 +4,7 @@ import { useProductContext } from "../../context/ProductContext";
 import { type ReactNode, useState } from "react";
 import classes from "./ProductPage.module.scss";
 import clsx from "clsx";
+import { getImageUrl } from "../../utils/getImageUrl";
 
 interface HoveringButtonProps {
 	to: string;
@@ -39,7 +40,7 @@ const ProductTextLine: React.FC<ProductTextLineProps> = ({ text1, text2 }) => {
 
 const ProductPage: React.FC = () => {
 	const [isShowingJson, setIsShowingJson] = useState(false);
-	const { filteredProducts } = useProductContext();
+	const { filteredProducts, selectedFilters } = useProductContext();
 	const { productId } = useParams();
 
 	const productOfInterest = filteredProducts.find(
@@ -72,7 +73,10 @@ const ProductPage: React.FC = () => {
 		return filteredProducts[index + 1].id;
 	};
 
-	if (!productOfInterest) redirect("/");
+	if (!productOfInterest) {
+		redirect("/");
+		return;
+	}
 
 	return (
 		<div>
@@ -94,7 +98,11 @@ const ProductPage: React.FC = () => {
 					Back
 				</HoveringButton>
 
-				<div className="flex">
+				<div className="flex items-center">
+					{selectedFilters.length > 0 && (
+						<span className="text-blue-7 text-sm mr-2">Filter applied*</span>
+					)}
+
 					<HoveringButton
 						to={`/${getNavigateItemId("prev")}`}
 						classNames="mr-1"
@@ -135,7 +143,10 @@ const ProductPage: React.FC = () => {
 				<div className="flex">
 					<div className={classes.imageContainer}>
 						<img
-							src={`https://images.svc.ui.com/?u=https%3A%2F%2Fstatic.ui.com%2Ffingerprint%2Fui%2Fimages%2F${productOfInterest.id}%2Fdefault%2F${productOfInterest?.images.default}.png&w=275&q=75`}
+							src={getImageUrl(
+								productOfInterest.id,
+								productOfInterest?.images.default,
+							)}
 							alt=""
 						/>
 					</div>
@@ -171,20 +182,20 @@ const ProductPage: React.FC = () => {
 							);
 						})}
 
-						{/* TODO, fix ts errors */}
-						{Object.keys(productOfInterest?.unifi?.network?.radios ?? {})
-							.length !== 0 && (
-							<>
-								<ProductTextLine
-									text1="Max power"
-									text2={`${Math.max(...Object.values(productOfInterest?.unifi.network.radios).map((radio) => radio.maxPower))} W`}
-								/>
-								<ProductTextLine
-									text1="Speed"
-									text2={`${Math.max(...Object.values(productOfInterest?.unifi.network.radios).map((radio) => radio.maxSpeedMegabitsPerSecond))} Mbps`}
-								/>
-							</>
-						)}
+						{productOfInterest.unifi &&
+							Object.keys(productOfInterest?.unifi?.network?.radios ?? {})
+								.length !== 0 && (
+								<>
+									<ProductTextLine
+										text1="Max power"
+										text2={`${Math.max(...Object.values(productOfInterest?.unifi.network.radios).map((radio) => radio.maxPower))} W`}
+									/>
+									<ProductTextLine
+										text1="Speed"
+										text2={`${Math.max(...Object.values(productOfInterest?.unifi.network.radios).map((radio) => radio.maxSpeedMegabitsPerSecond))} Mbps`}
+									/>
+								</>
+							)}
 
 						{productOfInterest?.unifi?.network?.numberOfPorts && (
 							<ProductTextLine

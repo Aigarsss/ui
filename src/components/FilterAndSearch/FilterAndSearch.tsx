@@ -2,20 +2,23 @@ import React from "react";
 import { useProductContext } from "../../context/ProductContext";
 import Icon from "../Icon";
 import Filter from "../Filter";
+import CheckBox from "../CheckBox";
 
 const FilterAndSearch = () => {
 	const { filteredProducts, setLayoutType, layoutType } = useProductContext();
 
 	return (
 		<div className="flex justify-between items-center h-[64px]">
-			<div className="flex">
+			<div className="flex items-center">
 				<input
 					type="search"
 					name="search"
 					id="search"
 					className="border border-black"
 				/>
-				<div>{filteredProducts.length} devices</div>
+				<div className="text-gray-4 text-xs ml-4">
+					{filteredProducts.length} devices
+				</div>
 			</div>
 
 			<div className="flex">

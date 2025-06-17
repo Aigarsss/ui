@@ -1,29 +1,37 @@
 import {
-	createContext,
+	type Dispatch,
 	type ReactElement,
+	type SetStateAction,
+	createContext,
 	use,
 	useEffect,
 	useMemo,
 	useState,
 } from "react";
 import type { Device } from "../types/types";
+import Logo from "../components/Logo";
 
 const ProductContext = createContext<{
 	filteredProducts: Device[];
 	layoutType: "list" | "grid";
 	setLayoutType: React.Dispatch<React.SetStateAction<"list" | "grid">>;
 	availableLines: { id: string; name: string }[];
+	selectedFilters: string[];
+	setSelectedFilters: Dispatch<SetStateAction<string[]>>;
 }>({
 	filteredProducts: [],
 	layoutType: "list",
 	setLayoutType: () => undefined,
 	availableLines: [],
+	selectedFilters: [],
+	setSelectedFilters: () => undefined,
 });
 
 const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 	const [initialProducts, setInitialProducts] = useState<Device[]>([]);
 	const [filteredProducts, setFilteredProducts] = useState<Device[]>([]);
 	const [layoutType, setLayoutType] = useState<"list" | "grid">("list");
+	const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -35,7 +43,6 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 
 			if (data.devices) {
 				setInitialProducts(data.devices);
-				setFilteredProducts(data.devices);
 			} else {
 				console.error("TODO");
 			}
@@ -43,7 +50,20 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 		fetchProducts();
 	}, []);
 
-	// console.log({ filteredProducts });
+	// Apply line filters
+	useEffect(() => {
+		if (selectedFilters.length === 0) {
+			setFilteredProducts(initialProducts);
+		} else {
+			const filteredItems = initialProducts.filter((item) => {
+				return selectedFilters.includes(item.line.id);
+			});
+
+			setFilteredProducts(filteredItems);
+		}
+	}, [selectedFilters, initialProducts]);
+
+	console.log({ selectedFilters });
 
 	const availableLines = initialProducts
 		// Finds the first match (self is the original array). If not the first match, filter out
@@ -58,17 +78,16 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 		.map((item) => item.line)
 		.sort((a, b) => (a.id > b.id ? 1 : -1));
 
-	// lines, search and product line
-	const updateFilterValues = () => {};
-
 	const value = useMemo(() => {
 		return {
 			filteredProducts,
 			layoutType,
 			setLayoutType,
 			availableLines,
+			selectedFilters,
+			setSelectedFilters,
 		};
-	}, [filteredProducts, layoutType, availableLines]);
+	}, [filteredProducts, layoutType, availableLines, selectedFilters]);
 
 	return <ProductContext value={value}>{children}</ProductContext>;
 };
