@@ -12,3 +12,6 @@ todo
 - border radius var
 - custom checkboxes
 - animations
+- box shadows
+- icons?
+- @import

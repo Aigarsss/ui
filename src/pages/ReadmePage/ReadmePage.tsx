@@ -39,12 +39,14 @@ const ReadmePage = () => {
 			<ul>
 				<li>
 					Put everything into context, probably could be handled differently,
-					but for this use case, I think its fine.
+					but for this use case, I think its fine. Same with data fetching,
+					didnt think it would make sense to use react query or something.
 				</li>
 				<li>
-					I wouldn't say that the setup in index.css is the best, but again, it
-					works for this project. In the case of a complete design system, that
-					would need to be refactored.
+					I wouldn't say that the setup in index.css is the best (like
+					text-text-2 is a pretty bad name for the class), but again, it works
+					for this project. In the case of a complete design system, that would
+					need to be refactored.
 				</li>
 				<li>
 					I was also not entirely sure about the Product page, what data should

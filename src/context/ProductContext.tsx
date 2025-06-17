@@ -37,11 +37,11 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 	const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 	const [error, setError] = useState("");
 
+	const UIDB_URL = "https://static.ui.com/fingerprint/ui/public.json";
+
 	useEffect(() => {
 		const fetchProducts = async () => {
-			const res = await fetch(
-				"https://static.ui.com/fingerprint/ui/public.json",
-			);
+			const res = await fetch(UIDB_URL);
 			const data = await res.json();
 
 			if (data.devices) {

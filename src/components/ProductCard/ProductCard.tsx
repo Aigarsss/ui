@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 			</div>
 
 			<div className={classes.descriptionContainer}>
-				<h3 className="text-text-1 text-xl font-light">
+				<h3 className="text-text-1 text-sm font-light">
 					{product.product.name}
 				</h3>
 
