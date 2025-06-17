@@ -3,7 +3,6 @@ import type { Device } from "../../types/types";
 import classes from "./ProductCard.module.scss";
 import { Link } from "react-router";
 import { getImageUrl } from "../../utils/getImageUrl";
-import { devices } from "playwright-core";
 
 interface ProductCardProps {
 	product: Device;

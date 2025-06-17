@@ -28,6 +28,10 @@ const ReadmePage = () => {
 			<h2 className="font-bold mt-4">Design</h2>
 			<ul>
 				<li>
+					I took the icons from Lucide library, instead of the ones in the
+					designs.
+				</li>
+				<li>
 					Fonts/colors/box-shadows might not be pixel perfect, because of figma
 					shenanigans.
 				</li>
@@ -51,11 +55,6 @@ const ReadmePage = () => {
 				<li>
 					I was also not entirely sure about the Product page, what data should
 					or should not be shown. So maybe there is something off there.
-				</li>
-				<li>
-					Im not a fan of importing svgs directly. I would prefer Lucide or some
-					other lib for icons, but since I wanted to stick to the design, I just
-					imported svgs.
 				</li>
 			</ul>
 		</div>

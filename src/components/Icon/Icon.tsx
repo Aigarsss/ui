@@ -4,25 +4,17 @@ import classes from "./Icon.module.scss";
 import clsx from "clsx";
 
 interface IconProps {
-	active?: boolean;
 	onClick: () => void;
 	className?: string;
 	children: ReactNode;
 }
 
-const Icon: React.FC<IconProps> = ({
-	active,
-	onClick,
-	className,
-	children,
-}) => {
+const Icon: React.FC<IconProps> = ({ onClick, className, children }) => {
 	return (
 		<button
 			type="button"
 			onClick={onClick}
-			className={clsx(classes.container, className, {
-				[classes.active]: active,
-			})}
+			className={clsx(classes.container, className)}
 		>
 			{children}
 		</button>

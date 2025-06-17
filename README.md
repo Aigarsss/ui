@@ -13,5 +13,4 @@ todo
 - custom checkboxes
 - animations
 - box shadows
-- icons?
-- @import
+- @ resolve

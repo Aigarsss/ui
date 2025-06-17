@@ -8,18 +8,7 @@
   background: white;
   cursor: pointer;
 
-  svg {
-    fill: #838691;
-  }
-
   &:hover {
     background: var(--color-neutral-2);
-  }
-
-  &.active {
-    svg {
-      background: var(--color-neutral-1);
-      fill: var(--color-blue-6);
-    }
   }
 }
