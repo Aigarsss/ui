@@ -6,7 +6,7 @@ const ReadmePage = () => {
 			<p className="mb-4">Just a couple of notes form my side.</p>
 
 			<h2 className="font-bold">UI/UX</h2>
-			<ul>
+			<ul className="list-disc ml-4">
 				<li>
 					I wasn't sure how the search should work, I assumed it should take the
 					filtered values into account when showing options.
@@ -27,7 +27,7 @@ const ReadmePage = () => {
 			</ul>
 
 			<h2 className="font-bold mt-4">Design</h2>
-			<ul>
+			<ul className="list-disc ml-4">
 				<li>
 					I took the icons from Lucide library, instead of the ones in the
 					designs.
@@ -41,7 +41,7 @@ const ReadmePage = () => {
 			</ul>
 
 			<h2 className="font-bold mt-4">Technical</h2>
-			<ul>
+			<ul className="list-disc ml-4">
 				<li>
 					Put everything into context, probably could be handled differently,
 					but for this use case, I think its fine. Same with data fetching,
@@ -56,6 +56,11 @@ const ReadmePage = () => {
 				<li>
 					I was also not entirely sure about the Product page, what data should
 					or should not be shown. So maybe there is something off there.
+				</li>
+				<li>
+					Page would die a horrible death if the structure of the json
+					completely changed. For now I assume, that if we receive "devices" key
+					in the response, then nothing kas changed.
 				</li>
 			</ul>
 		</div>

@@ -3,13 +3,21 @@ import { useNavigate } from "react-router";
 import { useProductContext } from "@/context/ProductContext";
 import classes from "./ProductList.module.scss";
 import { getImageUrl } from "@/utils/getImageUrl";
+import { motion } from "motion/react";
+import { motionTransition, motionVariantFadeIn } from "@/utils/animation";
 
 const ProductList = () => {
 	const { filteredProducts } = useProductContext();
 	const navigate = useNavigate();
 
 	return (
-		<table className={classes.table}>
+		<motion.table
+			className={classes.table}
+			variants={motionVariantFadeIn}
+			initial="hidden"
+			animate="show"
+			transition={motionTransition}
+		>
 			<thead>
 				<tr>
 					<th />
@@ -47,7 +55,7 @@ const ProductList = () => {
 					);
 				})}
 			</tbody>
-		</table>
+		</motion.table>
 	);
 };
 

@@ -6,6 +6,7 @@ import classes from "./ProductPage.module.scss";
 import clsx from "clsx";
 import { getImageUrl } from "@/utils/getImageUrl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "motion/react";
 
 interface HoveringButtonProps {
 	to: string;
@@ -104,9 +105,15 @@ const ProductPage: React.FC = () => {
 				</div>
 			</div>
 
-			<div className={classes.container}>
+			{/* Added key for react motion */}
+			<div key={productOfInterest.id} className={classes.container}>
 				<div className="flex flex-col md:flex-row mx-4 md:mx-0">
-					<div className={classes.imageContainer}>
+					<motion.div
+						className={classes.imageContainer}
+						initial={{ opacity: 0, y: 50 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5, ease: "easeInOut" }}
+					>
 						<img
 							src={getImageUrl(
 								productOfInterest.id,
@@ -114,9 +121,14 @@ const ProductPage: React.FC = () => {
 							)}
 							alt=""
 						/>
-					</div>
+					</motion.div>
 
-					<div className={classes.descriptionContainer}>
+					<motion.div
+						className={classes.descriptionContainer}
+						initial={{ opacity: 0, y: -50 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5, ease: "easeInOut" }}
+					>
 						<div className="text-2xl font-semibold mb-1">
 							{productOfInterest?.product.name}
 						</div>
@@ -180,7 +192,7 @@ const ProductPage: React.FC = () => {
 									: "See all details as JSON"}
 							</button>
 						</div>
-					</div>
+					</motion.div>
 				</div>
 
 				{isShowingJson && (

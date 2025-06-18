@@ -6,7 +6,3 @@
 # Linting
 Biome used for linting.
 - `npm run lint`
-
-todo
-- custom checkboxes
-- animations
