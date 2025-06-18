@@ -3,7 +3,7 @@
 
   .trigger {
     padding: 6px;
-    border-radius: 4px;
+    border-radius: var(--border-radius-small);
     cursor: pointer;
 
     &:hover, &.active {

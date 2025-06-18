@@ -8,7 +8,7 @@
   }
 
   .input {
-    border-radius: 4px;
+    border-radius: var(--border-radius-small);
     background: var(--color-neutral-2);
     color: var(--color-neutral-8);
     padding: 6px 8px 6px 32px;
@@ -36,7 +36,7 @@
     width: 100%;
     background: white;
     max-width: 344px;
-    border-radius: 8px;
+    border-radius: var(--border-radius-medium);
     overflow-y: scroll;
     max-height: 112px;
     z-index: 90;

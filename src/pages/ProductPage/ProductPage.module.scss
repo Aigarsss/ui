@@ -9,7 +9,7 @@
     width: 292px;
     height: 292px;
     background: var(--color-neutral-1);
-    border-radius: 8px;
+    border-radius: var(--border-radius-medium);
     margin-right: 32px;
 
     img {
@@ -30,8 +30,8 @@
   align-items: center;
   color: var(--color-text-3);
   padding: 4px;
-  border-radius: 4px;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius-small);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.06), 0 8px 23px rgba(0, 0, 0, 0.08);
 
   &:hover {
     box-shadow: none;
