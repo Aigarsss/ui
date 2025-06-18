@@ -4,7 +4,8 @@
   thead {
     position: sticky;
     top: 0;
-    background: white; // todo liquid glass?
+    background-color: rgb(255 255 255 / 85%);
+    backdrop-filter: blur(4px);
 
     tr {
       cursor: default;

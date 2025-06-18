@@ -1,13 +1,12 @@
-# React + TypeScript + Vite
-
+# Project
+- `npm run dev`
+- `npm run build`
 
 
 # Linting
-
 Biome used for linting.
-
+- `npm run lint`
 
 todo
 - custom checkboxes
 - animations
-- table liquid glass
