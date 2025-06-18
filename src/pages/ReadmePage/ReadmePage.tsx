@@ -23,6 +23,9 @@ const ReadmePage = () => {
 					Wasnt sure how json details should be show, went for the simplest
 					solution.
 				</li>
+				<li>
+					Very, very basic mobile styling, did not spend time on that.
+				</li>
 			</ul>
 
 			<h2 className="font-bold mt-4">Design</h2>

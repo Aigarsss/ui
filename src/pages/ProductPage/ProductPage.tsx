@@ -105,7 +105,7 @@ const ProductPage: React.FC = () => {
 			</div>
 
 			<div className={classes.container}>
-				<div className="flex">
+				<div className="flex flex-col md:flex-row mx-4 md:mx-0">
 					<div className={classes.imageContainer}>
 						<img
 							src={getImageUrl(

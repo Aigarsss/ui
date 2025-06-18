@@ -8,6 +8,6 @@ Biome used for linting.
 
 
 todo
-- check todos
 - custom checkboxes
 - animations
+- table liquid glass

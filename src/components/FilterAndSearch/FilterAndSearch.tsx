@@ -12,8 +12,8 @@ const FilterAndSearch = () => {
 		useProductContext();
 
 	return (
-		<div className="flex justify-between items-center h-[64px]">
-			<div className="flex items-center">
+		<div className="flex flex-col md:flex-row md:justify-between md:items-center md:h-[64px] mt-4 md:mt-0">
+			<div className="flex flex-col md:flex-row md:items-center">
 				<SearchSelect placeholder="Search" />
 
 				<div className="text-gray-4 text-xs ml-4">
