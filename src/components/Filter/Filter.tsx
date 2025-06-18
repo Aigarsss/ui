@@ -6,7 +6,7 @@ import { useProductContext } from "@/context/ProductContext";
 import clsx from "clsx";
 import CheckBox from "@/components/CheckBox";
 
-const Filter = () => {
+const Filter = ({ classNames }: { classNames?: string }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const { availableLines, selectedFilters, setSelectedFilters } =
@@ -17,7 +17,7 @@ const Filter = () => {
 	});
 
 	return (
-		<div className={classes.container}>
+		<div className={clsx(classes.container, classNames)}>
 			<button
 				className={clsx(classes.trigger, {
 					[classes.active]: isFilterOpen,

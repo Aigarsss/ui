@@ -41,7 +41,7 @@ const FilterAndSearch = () => {
 					/>
 				</Icon>
 
-				<Filter />
+				<Filter classNames="ml-2" />
 			</div>
 		</div>
 	);

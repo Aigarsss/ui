@@ -34,8 +34,10 @@ interface ProductTextLineProps {
 const ProductTextLine: React.FC<ProductTextLineProps> = ({ text1, text2 }) => {
 	return (
 		<div className="flex justify-between py-2">
-			<span>{text1}</span>
-			<span className="text-text-3 max-w-[100px]">{text2}</span>
+			<span className="text-text-1 text-sm">{text1}</span>
+			<span className="text-text-3 text-sm max-w-[100px] text-end">
+				{text2}
+			</span>
 		</div>
 	);
 };
@@ -185,7 +187,7 @@ const ProductPage: React.FC = () => {
 							<button
 								type="button"
 								onClick={() => setIsShowingJson(!isShowingJson)}
-								className="py-2 text-blue-6 hover:text-blue-7 cursor-pointer"
+								className="py-2 text-sm text-blue-6 hover:text-blue-7 cursor-pointer"
 							>
 								{isShowingJson
 									? "Hide JSON details"
