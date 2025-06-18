@@ -8,7 +8,7 @@ import {
 	useMemo,
 	useState,
 } from "react";
-import type { Device } from "../types/types";
+import type { Device } from "@/types/types";
 
 const ProductContext = createContext<{
 	filteredProducts: Device[];

@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { useRef, useState } from "react";
 import classes from "./SearchSelect.module.scss";
 import { useClickAway } from "react-use";
-import { useProductContext } from "../../context/ProductContext";
+import { useProductContext } from "@/context/ProductContext";
 import { Link } from "react-router";
-import type { Device } from "../../types/types";
+import type { Device } from "@/types/types";
 
 interface SearchSelectProps {
 	placeholder?: string;

@@ -1,8 +1,8 @@
 import type React from "react";
-import type { Device } from "../../types/types";
+import type { Device } from "@/types/types";
 import classes from "./ProductCard.module.scss";
 import { Link } from "react-router";
-import { getImageUrl } from "../../utils/getImageUrl";
+import { getImageUrl } from "@/utils/getImageUrl";
 
 interface ProductCardProps {
 	product: Device;

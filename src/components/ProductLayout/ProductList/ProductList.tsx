@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { useProductContext } from "../../../context/ProductContext";
+import { useProductContext } from "@/context/ProductContext";
 import classes from "./ProductList.module.scss";
-import { getImageUrl } from "../../../utils/getImageUrl";
+import { getImageUrl } from "@/utils/getImageUrl";
 
 const ProductList = () => {
 	const { filteredProducts } = useProductContext();

@@ -1,7 +1,8 @@
 import React from "react";
 import classes from "./NavBar.module.scss";
-import Logo from "../Logo";
+
 import { Link } from "react-router";
+import Logo from "@/components/Logo";
 
 const NavBar = () => {
 	return (

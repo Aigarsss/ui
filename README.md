@@ -11,4 +11,3 @@ todo
 - check todos
 - custom checkboxes
 - animations
-- @ resolve

@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
 import classes from "./Filter.module.scss";
 import { useClickAway } from "react-use";
-import { useProductContext } from "../../context/ProductContext";
-import CheckBox from "../CheckBox";
+import { useProductContext } from "@/context/ProductContext";
+
 import clsx from "clsx";
+import CheckBox from "@/components/CheckBox";
 
 const Filter = () => {
 	const ref = useRef<HTMLDivElement | null>(null);

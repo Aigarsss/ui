@@ -1,7 +1,7 @@
 import React from "react";
-import { useProductContext } from "../../../context/ProductContext";
+import { useProductContext } from "@/context/ProductContext";
 import classes from "./ProductGrid.module.scss";
-import ProductCard from "../../ProductCard";
+import ProductCard from "@/components/ProductCard";
 
 const ProductGrid = () => {
 	const { filteredProducts } = useProductContext();

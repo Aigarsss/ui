@@ -1,10 +1,10 @@
 import { Link, redirect, useParams } from "react-router";
 import type * as React from "react";
-import { useProductContext } from "../../context/ProductContext";
+import { useProductContext } from "@/context/ProductContext";
 import { type ReactNode, useState } from "react";
 import classes from "./ProductPage.module.scss";
 import clsx from "clsx";
-import { getImageUrl } from "../../utils/getImageUrl";
+import { getImageUrl } from "@/utils/getImageUrl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface HoveringButtonProps {

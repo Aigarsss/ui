@@ -1,10 +1,11 @@
 import React from "react";
-import { useProductContext } from "../../context/ProductContext";
-import Icon from "../Icon";
-import Filter from "../Filter";
-import SearchSelect from "../SearchSelect";
+import { useProductContext } from "@/context/ProductContext";
+
 import { LayoutGrid, List } from "lucide-react";
 import clsx from "clsx";
+import Filter from "@/components/Filter";
+import SearchSelect from "@/components/SearchSelect";
+import Icon from "@/components/Icon";
 
 const FilterAndSearch = () => {
 	const { filteredProducts, initialProducts, setLayoutType, layoutType } =
