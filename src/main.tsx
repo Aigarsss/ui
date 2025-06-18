@@ -10,7 +10,7 @@ import ProductPage from "./pages/ProductPage";
 import ReadmePage from "./pages/ReadmePage";
 
 scan({
-	enabled: true,
+	enabled: false,
 });
 
 createRoot(document.getElementById("root") as HTMLElement).render(
