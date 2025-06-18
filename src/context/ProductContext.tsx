@@ -9,6 +9,7 @@ import {
 	useState,
 } from "react";
 import type { Device } from "@/types/types";
+import { z } from "zod";
 
 const ProductContext = createContext<{
 	filteredProducts: Device[];
@@ -37,21 +38,74 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 	const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 	const [error, setError] = useState("");
 
-	const UIDB_URL = "https://static.ui.com/fingerprint/ui/public.json";
+	const UIDB_URL = "https://static.ui.com/fingerprint/ui/public.json"; // non-working link - https://dummyjson.com/test
 
+	const ApiResponseSchema = z.object({
+		devices: z.array(
+			z.object({
+				id: z.string(),
+				images: z.object({
+					default: z.string(),
+					nopadding: z.string(),
+					topology: z.string(),
+				}),
+				line: z.object({
+					id: z.string(),
+					name: z.string(),
+				}),
+				product: z.object({
+					abbrev: z.string(),
+					name: z.string(),
+				}),
+				shortnames: z.array(z.string()),
+				unifi: z
+					.object({
+						adoptability: z.string().optional(),
+						network: z
+							.object({
+								ethernetMaxSpeedMegabitsPerSecond: z.number().optional(),
+								numberOfPorts: z.number().optional(),
+								radios: z.record(
+									z.string(),
+									z.object({
+										gain: z.number().optional(),
+										maxPower: z.number().optional(),
+										maxSpeedMegabitsPerSecond: z.number().optional(),
+									}),
+								),
+							})
+							.optional(),
+					})
+					.optional(),
+			}),
+		),
+		version: z.string(),
+	});
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: We want this to only run once
 	useEffect(() => {
 		const fetchProducts = async () => {
-			const res = await fetch(UIDB_URL);
-			const data = await res.json();
+			try {
+				const res = await fetch(UIDB_URL);
+				const rawData = await res.json();
+				const data = ApiResponseSchema.parse(rawData);
 
-			if (data.devices) {
 				setInitialProducts(data.devices);
-			} else {
-				setError(
-					"⚠️ File schema might have changed. Please contact UIDB team for details. ⚠️",
-				);
+			} catch (error) {
+				setInitialProducts([]);
+
+				if (error instanceof z.ZodError) {
+					console.error("Schema validation failed:", error.errors);
+					setError(
+						"⚠️ API response format has changed. Please contact UIDB team.",
+					);
+				} else {
+					console.error("Fetch error:", error);
+					setError("⚠️ Failed to fetch data. Please try again.");
+				}
 			}
 		};
+
 		fetchProducts();
 	}, []);
 
@@ -75,7 +129,8 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 				index ===
 				self.findIndex(
 					(item) =>
-						item.line.id === obj.line.id && item.line.name === obj.line.name,
+						item.line?.id === obj.line?.id &&
+						item.line?.name === obj.line?.name,
 				),
 		)
 		.map((item) => item.line)

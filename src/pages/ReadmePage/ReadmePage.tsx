@@ -58,9 +58,8 @@ const ReadmePage = () => {
 					or should not be shown. So maybe there is something off there.
 				</li>
 				<li>
-					Page would die a horrible death if the structure of the json
-					completely changed. For now I assume, that if we receive "devices" key
-					in the response, then nothing kas changed.
+					Added zod for schema validation, but I have not used it before, so I
+					am not 100% sure this would work.
 				</li>
 			</ul>
 		</div>

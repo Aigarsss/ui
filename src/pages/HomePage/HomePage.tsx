@@ -10,8 +10,6 @@ const HomePage = () => {
 		<div className="mx-8">
 			<FilterAndSearch />
 
-			{error && <div>{error}</div>}
-
 			{filteredProducts.length === 0 && !error && (
 				<div className="animate-pulse">Loading...</div>
 			)}

@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
-		"lint": "npx @biomejs/biome format --write"
+		"lint": "npx @biomejs/biome format --write",
+		"type-check": "tsc"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.10",
@@ -18,7 +19,8 @@
 		"react-dom": "^19.1.0",
 		"react-router": "^7.6.0",
 		"react-scan": "^0.3.4",
-		"tailwindcss": "^4.1.10"
+		"tailwindcss": "^4.1.10",
+		"zod": "^3.25.67"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

@@ -159,17 +159,17 @@ const ProductPage: React.FC = () => {
 							);
 						})}
 
-						{productOfInterest.unifi &&
-							Object.keys(productOfInterest?.unifi?.network?.radios ?? {})
-								.length !== 0 && (
+						{productOfInterest?.unifi?.network?.radios &&
+							Object.keys(productOfInterest?.unifi.network.radios).length !==
+								0 && (
 								<>
 									<ProductTextLine
 										text1="Max power"
-										text2={`${Math.max(...Object.values(productOfInterest?.unifi.network.radios).map((radio) => radio.maxPower))} W`}
+										text2={`${Math.max(...Object.values(productOfInterest?.unifi.network.radios).map((radio) => radio.maxPower ?? 0))} W`}
 									/>
 									<ProductTextLine
 										text1="Speed"
-										text2={`${Math.max(...Object.values(productOfInterest?.unifi.network.radios).map((radio) => radio.maxSpeedMegabitsPerSecond))} Mbps`}
+										text2={`${Math.max(...Object.values(productOfInterest?.unifi.network.radios).map((radio) => radio.maxSpeedMegabitsPerSecond ?? 0))} Mbps`}
 									/>
 								</>
 							)}
