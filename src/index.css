@@ -25,4 +25,13 @@
 
 	--border-radius-small: 4px;
 	--border-radius-medium: 8px;
+
+	--tw-ring-color: red; /* Custom blue */
+}
+
+/* Add custom color for tabbing */
+@layer base {
+	:focus-visible {
+		@apply ring-2 ring-[#006fff] outline-none;
+	}
 }
