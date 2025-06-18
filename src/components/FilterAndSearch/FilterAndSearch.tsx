@@ -27,7 +27,7 @@ const FilterAndSearch = () => {
 						size={20}
 						className={clsx({
 							"text-blue-6": layoutType === "list",
-							"text-neutral-10": layoutType !== "list",
+							"text-neutral-8": layoutType !== "list",
 						})}
 					/>
 				</Icon>
@@ -36,7 +36,7 @@ const FilterAndSearch = () => {
 						size={20}
 						className={clsx({
 							"text-blue-6": layoutType === "grid",
-							"text-neutral-10": layoutType !== "grid",
+							"text-neutral-8": layoutType !== "grid",
 						})}
 					/>
 				</Icon>

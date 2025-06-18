@@ -25,7 +25,7 @@ const Filter = () => {
 				type="button"
 				onClick={() => setIsFilterOpen(true)}
 			>
-				Filter{" "}
+				Filter
 				{selectedFilters.length > 0 && (
 					<span className="bg-neutral-3 text-xs rounded-full py-1 px-2">
 						{selectedFilters.length}

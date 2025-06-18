@@ -2,7 +2,7 @@ import React from "react";
 
 import { Link } from "react-router";
 import Logo from "@/components/Logo";
-import {CircleSmall, GitBranch} from "lucide-react";
+import { CircleSmall, GitBranch } from "lucide-react";
 
 const NavBar = () => {
 	return (
@@ -26,7 +26,15 @@ const NavBar = () => {
 				<CircleSmall size={16} className="mx-2" />
 
 				<div className="flex items-center">
-					<GitBranch size={20} /> <a href="https://github.com/Aigarsss/ui" target="_blank" className="underline" rel="noreferrer">Code</a>
+					<GitBranch size={20} />{" "}
+					<a
+						href="https://github.com/Aigarsss/ui"
+						target="_blank"
+						className="underline"
+						rel="noreferrer"
+					>
+						Code
+					</a>
 				</div>
 			</div>
 		</div>
