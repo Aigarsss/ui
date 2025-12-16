@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { useRef, useState } from "react";
 import classes from "./SearchSelect.module.scss";
 import { useClickAway } from "react-use";
-import { useProductContext } from "@/context/ProductContext";
 import { Link } from "react-router";
 import type { Device } from "@/types/types";
 import { Search } from "lucide-react";
+import { useGetProducts } from "@/hooks/useGetProducts";
 
 interface SearchSelectProps {
 	placeholder?: string;
@@ -16,8 +16,8 @@ const SearchSelect: React.FC<SearchSelectProps> = ({ placeholder }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const [value, setValue] = useState("");
 	const [isSearchOpen, setIsSearchOpen] = useState(false);
-	const { filteredProducts } = useProductContext();
 	const [searchResults, setSearchResults] = useState<Device[]>([]);
+	const { filteredDevices } = useGetProducts();
 
 	useClickAway(ref, () => {
 		setIsSearchOpen(false);
@@ -25,11 +25,11 @@ const SearchSelect: React.FC<SearchSelectProps> = ({ placeholder }) => {
 
 	useEffect(() => {
 		setSearchResults(
-			filteredProducts.filter((item) =>
-				item.product.name.toLowerCase().includes(value.toLowerCase()),
+			filteredDevices.filter((device) =>
+				device.product.name.toLowerCase().includes(value.toLowerCase()),
 			),
 		);
-	}, [filteredProducts, value]);
+	}, [filteredDevices, value]);
 
 	const highlightMatch = (text: string) => {
 		if (!value) return text;

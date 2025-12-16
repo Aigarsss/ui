@@ -1,12 +1,12 @@
 import { Link, redirect, useParams } from "react-router";
 import type * as React from "react";
-import { useProductContext } from "@/context/ProductContext";
 import { type ReactNode, useState } from "react";
 import classes from "./ProductPage.module.scss";
 import clsx from "clsx";
 import { getImageUrl } from "@/utils/getImageUrl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion } from "motion/react";
+import { useGetProducts } from "@/hooks/useGetProducts";
+import { useAppliedFilters } from "@/stores/productsStore";
 
 interface HoveringButtonProps {
 	to: string;
@@ -42,18 +42,19 @@ const ProductTextLine: React.FC<ProductTextLineProps> = ({ text1, text2 }) => {
 	);
 };
 
-const ProductPage: React.FC = () => {
+const ProductPage = () => {
 	const [isShowingJson, setIsShowingJson] = useState(false);
-	const { filteredProducts, selectedFilters } = useProductContext();
 	const { productId } = useParams();
+	const { filteredDevices } = useGetProducts();
+	const appliedFilters = useAppliedFilters();
 
-	const productOfInterest = filteredProducts.find(
+	const productOfInterest = filteredDevices.find(
 		(product) => product.id === productId,
 	);
 
 	const getNavigateItemId = (type: "prev" | "next"): string | undefined => {
-		const totalProducts = filteredProducts.length;
-		const index = filteredProducts.findIndex((obj) => obj.id === productId);
+		const totalProducts = filteredDevices.length;
+		const index = filteredDevices.findIndex((obj) => obj.id === productId);
 
 		// Probably not going to happen, but still
 		if (index === -1) {
@@ -62,19 +63,19 @@ const ProductPage: React.FC = () => {
 
 		// if this is the first item
 		if (index === 0 && type === "prev") {
-			return filteredProducts.at(-1)?.id;
+			return filteredDevices.at(-1)?.id;
 		}
 
 		// if this is the first item
 		if (index === totalProducts - 1 && type === "next") {
-			return filteredProducts[0].id;
+			return filteredDevices[0].id;
 		}
 
 		if (type === "prev") {
-			return filteredProducts[index - 1].id;
+			return filteredDevices[index - 1].id;
 		}
 
-		return filteredProducts[index + 1].id;
+		return filteredDevices[index + 1].id;
 	};
 
 	if (!productOfInterest) {
@@ -91,7 +92,7 @@ const ProductPage: React.FC = () => {
 				</HoveringButton>
 
 				<div className="flex items-center">
-					{selectedFilters.length > 0 && (
+					{appliedFilters.length > 0 && (
 						<span className="text-blue-7 text-sm mr-2">Filter applied*</span>
 					)}
 
@@ -110,12 +111,7 @@ const ProductPage: React.FC = () => {
 			{/* Added key for react motion */}
 			<div key={productOfInterest.id} className={classes.container}>
 				<div className="flex flex-col md:flex-row mx-4 md:mx-0">
-					<motion.div
-						className={classes.imageContainer}
-						initial={{ opacity: 0, y: 50 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, ease: "easeInOut" }}
-					>
+					<div className={classes.imageContainer}>
 						<img
 							src={getImageUrl(
 								productOfInterest.id,
@@ -123,14 +119,9 @@ const ProductPage: React.FC = () => {
 							)}
 							alt=""
 						/>
-					</motion.div>
+					</div>
 
-					<motion.div
-						className={classes.descriptionContainer}
-						initial={{ opacity: 0, y: -50 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, ease: "easeInOut" }}
-					>
+					<div className={classes.descriptionContainer}>
 						<div className="text-2xl font-semibold mb-1">
 							{productOfInterest?.product.name}
 						</div>
@@ -194,7 +185,7 @@ const ProductPage: React.FC = () => {
 									: "See all details as JSON"}
 							</button>
 						</div>
-					</motion.div>
+					</div>
 				</div>
 
 				{isShowingJson && (

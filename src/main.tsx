@@ -4,18 +4,20 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./index.css";
 import Layout from "./Layout";
-import ProductContextProvider from "./context/ProductContext";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import ReadmePage from "./pages/ReadmePage";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 scan({
-	enabled: false,
+	enabled: true,
 });
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root") as HTMLElement).render(
 	<StrictMode>
-		<ProductContextProvider>
+		<QueryClientProvider client={queryClient}>
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Layout />}>
@@ -25,6 +27,6 @@ createRoot(document.getElementById("root") as HTMLElement).render(
 					</Route>
 				</Routes>
 			</BrowserRouter>
-		</ProductContextProvider>
+		</QueryClientProvider>
 	</StrictMode>,
 );

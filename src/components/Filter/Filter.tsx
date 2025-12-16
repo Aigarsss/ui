@@ -1,16 +1,35 @@
 import React, { useRef, useState } from "react";
 import classes from "./Filter.module.scss";
 import { useClickAway } from "react-use";
-import { useProductContext } from "@/context/ProductContext";
 
 import clsx from "clsx";
 import CheckBox from "@/components/CheckBox";
+import {
+	useAppliedFilters,
+	useProductsStoreActions,
+} from "@/stores/productsStore";
+import { useGetProducts } from "@/hooks/useGetProducts";
 
 const Filter = ({ classNames }: { classNames?: string }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
-	const { availableLines, selectedFilters, setSelectedFilters } =
-		useProductContext();
+
+	const { allDevices } = useGetProducts();
+	const appliedFilters = useAppliedFilters();
+	const { setAppliedFilters } = useProductsStoreActions();
+
+	const availableFilters = allDevices
+		.filter(
+			(obj, index, self) =>
+				index ===
+				self.findIndex(
+					(item) =>
+						item.line?.id === obj.line?.id &&
+						item.line?.name === obj.line?.name,
+				),
+		)
+		.map((item) => item.line)
+		.sort((a, b) => (a.id > b.id ? 1 : -1));
 
 	useClickAway(ref, () => {
 		setIsFilterOpen(false);
@@ -26,9 +45,9 @@ const Filter = ({ classNames }: { classNames?: string }) => {
 				onClick={() => setIsFilterOpen(true)}
 			>
 				Filter
-				{selectedFilters.length > 0 && (
+				{appliedFilters.length > 0 && (
 					<span className="bg-neutral-3 text-xs rounded-full py-1 px-2">
-						{selectedFilters.length}
+						{appliedFilters.length}
 					</span>
 				)}
 			</button>
@@ -37,21 +56,19 @@ const Filter = ({ classNames }: { classNames?: string }) => {
 					<div className="text-text-1 font-bold text-sm">Product line</div>
 
 					<div className="grid gap-2 my-4">
-						{availableLines.map((line) => {
+						{availableFilters.map((line) => {
 							return (
 								<CheckBox
 									key={line.id}
 									id={line.id}
-									checked={selectedFilters.includes(line.id)}
+									checked={appliedFilters.includes(line.id)}
 									label={line.name}
 									customOnChange={(val) => {
 										if (val) {
-											setSelectedFilters((prevState) => {
-												return [...prevState, line.id];
-											});
+											setAppliedFilters([...appliedFilters, line.id]);
 										} else {
-											setSelectedFilters(
-												selectedFilters.filter((item) => item !== line.id),
+											setAppliedFilters(
+												appliedFilters.filter((item) => item !== line.id),
 											);
 										}
 									}}
@@ -62,13 +79,13 @@ const Filter = ({ classNames }: { classNames?: string }) => {
 
 					<button
 						className={clsx("flex ", {
-							"text-red-6 cursor-pointer": selectedFilters.length > 0,
-							"text-red-3 cursor-not-allowed": selectedFilters.length === 0,
+							"text-red-6 cursor-pointer": appliedFilters.length > 0,
+							"text-red-3 cursor-not-allowed": appliedFilters.length === 0,
 						})}
 						type="reset"
-						disabled={selectedFilters.length === 0}
+						disabled={appliedFilters.length === 0}
 						onClick={() => {
-							setSelectedFilters([]);
+							setAppliedFilters([]);
 							setIsFilterOpen(false);
 						}}
 					>

@@ -1,25 +1,15 @@
 import React from "react";
-import { useProductContext } from "@/context/ProductContext";
 import classes from "./ProductGrid.module.scss";
 import ProductCard from "@/components/ProductCard";
-import { motion } from "motion/react";
-import { motionTransition, motionVariantFadeIn } from "@/utils/animation";
+import type { Device } from "@/types/types";
 
-const ProductGrid = () => {
-	const { filteredProducts } = useProductContext();
-
+const ProductGrid = ({ filteredDevices }: { filteredDevices: Device[] }) => {
 	return (
-		<motion.div
-			variants={motionVariantFadeIn}
-			initial="hidden"
-			animate="show"
-			transition={motionTransition}
-			className={classes.gridContainer}
-		>
-			{filteredProducts.map((product) => {
-				return <ProductCard key={product.id} product={product} />;
+		<div className={classes.gridContainer}>
+			{filteredDevices.map((device) => {
+				return <ProductCard key={device.id} product={device} />;
 			})}
-		</motion.div>
+		</div>
 	);
 };
 

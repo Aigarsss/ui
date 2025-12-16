@@ -3,8 +3,6 @@ import type { Device } from "@/types/types";
 import classes from "./ProductCard.module.scss";
 import { Link } from "react-router";
 import { getImageUrl } from "@/utils/getImageUrl";
-import { motion } from "motion/react";
-import { motionVariantFadeIn } from "@/utils/animation";
 
 interface ProductCardProps {
 	product: Device;
@@ -12,7 +10,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 	return (
-		<motion.div className={classes.container} variants={motionVariantFadeIn}>
+		<div className={classes.container}>
 			<Link to={`/${product.id}`} type="button">
 				<div className={classes.imageContainer}>
 					<img
@@ -34,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 					</span>
 				</div>
 			</Link>
-		</motion.div>
+		</div>
 	);
 };
 

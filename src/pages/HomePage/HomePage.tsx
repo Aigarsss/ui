@@ -1,23 +1,23 @@
 import FilterAndSearch from "@/components/FilterAndSearch";
-import { useProductContext } from "@/context/ProductContext";
 import ProductList from "@/components/ProductLayout/ProductList";
 import ProductGrid from "@/components/ProductLayout/ProductGrid";
+import { useGetProducts } from "@/hooks/useGetProducts";
+import { useAppliedLayout } from "@/stores/productsStore";
 
 const HomePage = () => {
-	const { layoutType, filteredProducts, error } = useProductContext();
+	const appliedLayout = useAppliedLayout();
+	const { filteredDevices, isPending } = useGetProducts();
 
 	return (
 		<div className="mx-8">
 			<FilterAndSearch />
 
-			{filteredProducts.length === 0 && !error && (
-				<div className="animate-pulse">Loading...</div>
-			)}
+			{isPending && <div className="animate-pulse">Loading...</div>}
 
-			{filteredProducts.length > 0 && layoutType === "list" ? (
-				<ProductList />
+			{filteredDevices.length > 0 && appliedLayout === "list" ? (
+				<ProductList filteredDevices={filteredDevices} />
 			) : (
-				<ProductGrid />
+				<ProductGrid filteredDevices={filteredDevices} />
 			)}
 		</div>
 	);

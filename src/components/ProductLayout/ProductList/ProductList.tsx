@@ -1,23 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { useProductContext } from "@/context/ProductContext";
 import classes from "./ProductList.module.scss";
 import { getImageUrl } from "@/utils/getImageUrl";
-import { motion } from "motion/react";
-import { motionTransition, motionVariantFadeIn } from "@/utils/animation";
+import { Device } from "@/types/types";
 
-const ProductList = () => {
-	const { filteredProducts } = useProductContext();
+const ProductList = ({ filteredDevices }: { filteredDevices: Device[] }) => {
 	const navigate = useNavigate();
 
 	return (
-		<motion.table
-			className={classes.table}
-			variants={motionVariantFadeIn}
-			initial="hidden"
-			animate="show"
-			transition={motionTransition}
-		>
+		<table className={classes.table}>
 			<thead>
 				<tr>
 					<th />
@@ -27,35 +18,35 @@ const ProductList = () => {
 			</thead>
 
 			<tbody>
-				{filteredProducts?.map((product) => {
+				{filteredDevices?.map((device) => {
 					return (
 						<tr
-							key={product.id}
+							key={device.id}
 							tabIndex={0}
-							onClick={() => navigate(`/${product.id}`)}
+							onClick={() => navigate(`/${device.id}`)}
 							onKeyDown={(e) => {
 								if (e.key === "Enter") {
-									navigate(`/${product.id}`);
+									navigate(`/${device.id}`);
 								}
 							}}
 						>
 							<td>
 								<div className="flex justify-center items-center">
 									<img
-										src={getImageUrl(product.id, product.images.default)}
+										src={getImageUrl(device.id, device.images.default)}
 										width={20}
 										height={20}
 										alt=""
 									/>
 								</div>
 							</td>
-							<td className="text-sm text-text-2">{product.line.name}</td>
-							<td className="text-sm text-text-3">{product.product.name}</td>
+							<td className="text-sm text-text-2">{device.line.name}</td>
+							<td className="text-sm text-text-3">{device.product.name}</td>
 						</tr>
 					);
 				})}
 			</tbody>
-		</motion.table>
+		</table>
 	);
 };
 
