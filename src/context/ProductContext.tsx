@@ -95,7 +95,7 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
 				setInitialProducts([]);
 
 				if (error instanceof z.ZodError) {
-					console.error("Schema validation failed:", error.errors);
+					console.error("Schema validation failed:", error);
 					setError(
 						"⚠️ API response format has changed. Please contact UIDB team.",
 					);
