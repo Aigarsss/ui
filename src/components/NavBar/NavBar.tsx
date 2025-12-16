@@ -10,7 +10,7 @@ const NavBar = () => {
 			<div className="flex items-center">
 				<Logo />
 				<Link to="/" className="ml-4 text-text-3">
-					Devices{" "}
+					Devices
 				</Link>
 			</div>
 
@@ -26,7 +26,7 @@ const NavBar = () => {
 				<CircleSmall size={16} className="mx-2" />
 
 				<div className="flex items-center">
-					<GitBranch size={20} />{" "}
+					<GitBranch size={20} />
 					<a
 						href="https://github.com/Aigarsss/ui"
 						target="_blank"
