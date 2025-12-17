@@ -1,9 +1,8 @@
-import type React from "react";
-import { useState } from "react";
-import type { ComponentPropsWithoutRef } from "react";
-import classes from "./CheckBox.module.scss";
-import { CheckIcon, XIcon } from "lucide-react";
 import clsx from "clsx";
+import { CheckIcon } from "lucide-react";
+import type { ComponentPropsWithoutRef } from "react";
+import { useState } from "react";
+import classes from "./CheckBox.module.scss";
 
 interface CheckBoxProps extends ComponentPropsWithoutRef<"input"> {
 	id: string;

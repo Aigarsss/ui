@@ -41,8 +41,8 @@
     background: white;
     max-width: 344px;
     border-radius: var(--border-radius-medium);
-    overflow-y: scroll;
-    max-height: 112px;
+    overflow-y: auto;
+    //max-height: 112px;
     z-index: 90;
     display: flex;
     flex-direction: column;

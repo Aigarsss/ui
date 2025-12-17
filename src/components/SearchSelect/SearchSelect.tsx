@@ -1,12 +1,12 @@
-import type React from "react";
-import { useEffect } from "react";
-import { useRef, useState } from "react";
-import classes from "./SearchSelect.module.scss";
-import { useClickAway } from "react-use";
-import { Link } from "react-router";
-import type { Device } from "@/types/types";
 import { Search } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router";
+import { useClickAway } from "react-use";
+// @ts-expect-error No types available
+import { AutoSizer, List } from "react-virtualized";
 import { useGetProducts } from "@/hooks/useGetProducts";
+import type { Device } from "@/types/types";
+import classes from "./SearchSelect.module.scss";
 
 interface SearchSelectProps {
 	placeholder?: string;
@@ -15,6 +15,7 @@ interface SearchSelectProps {
 const SearchSelect = ({ placeholder }: SearchSelectProps) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const [value, setValue] = useState("");
+
 	const [isSearchOpen, setIsSearchOpen] = useState(false);
 	const [searchResults, setSearchResults] = useState<Device[]>([]);
 	const { filteredDevices } = useGetProducts();
@@ -94,22 +95,46 @@ const SearchSelect = ({ placeholder }: SearchSelectProps) => {
 							No results found, try again
 						</div>
 					)}
-					{searchResults.map((item) => {
-						return (
-							<Link
-								to={`/${item.id}`}
-								key={item.id}
-								className="flex justify-betweent py-1.5 hover:bg-neutral-2"
-							>
-								<span className="text-text-2 text-sm whitespace-nowrap max-w-[200px] overflow-hidden overflow-ellipsis">
-									{highlightMatch(item.product.name)}
-								</span>
-								<span className="flex flex-auto justify-end text-text-3 text-sm">
-									{item.product.abbrev}
-								</span>
-							</Link>
-						);
-					})}
+
+					{searchResults.length > 0 && (
+						<div style={{ width: "100%", height: "150px" }}>
+							<AutoSizer>
+								{({ width, height }: { width: number; height: number }) => (
+									<List
+										width={width}
+										height={height}
+										rowHeight={30}
+										rowCount={searchResults.length}
+										rowRenderer={({
+											index,
+											key,
+											style,
+										}: {
+											index: number;
+											key: string;
+											style: React.CSSProperties;
+										}) => {
+											return (
+												<Link
+													style={style}
+													to={`/${searchResults[index].id}`}
+													key={key}
+													className="flex justify-between py-1.5 hover:bg-neutral-2"
+												>
+													<span className="text-text-2 text-sm whitespace-nowrap max-w-[130px] overflow-hidden overflow-ellipsis">
+														{highlightMatch(searchResults[index].product.name)}
+													</span>
+													<span className="flex items-end text-text-3 text-sm pr-2">
+														{searchResults[index].product.abbrev}
+													</span>
+												</Link>
+											);
+										}}
+									/>
+								)}
+							</AutoSizer>
+						</div>
+					)}
 				</div>
 			)}
 		</div>
