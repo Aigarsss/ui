@@ -1,15 +1,13 @@
-@use "@/scss/mixins";
-
 .gridContainer {
   display: grid;
   grid-gap: 16px;
   grid-template-columns: repeat(2, 1fr);
 
-  @include mixins.for-tablet-portrait-up {
+  @media (min-width: 600px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @include mixins.for-desktop-up {
+  @media (min-width: 1200px) {
     grid-template-columns: repeat(6, 1fr);
   }
 }

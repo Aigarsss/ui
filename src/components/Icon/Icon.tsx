@@ -9,7 +9,7 @@ interface IconProps {
 	children: ReactNode;
 }
 
-const Icon: React.FC<IconProps> = ({ onClick, className, children }) => {
+const Icon = ({ onClick, className, children }: IconProps) => {
 	return (
 		<button
 			type="button"

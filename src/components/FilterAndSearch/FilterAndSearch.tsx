@@ -27,7 +27,7 @@ const FilterAndSearch = () => {
 				</div>
 			</div>
 
-			<div className="flex">
+			<div className="flex items-center">
 				<Icon onClick={() => setAppliedLayout("list")}>
 					<List
 						size={20}

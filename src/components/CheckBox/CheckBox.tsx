@@ -11,12 +11,7 @@ interface CheckBoxProps extends ComponentPropsWithoutRef<"input"> {
 	customOnChange?: (isChecked: boolean) => void;
 }
 
-const CheckBox: React.FC<CheckBoxProps> = ({
-	id,
-	label,
-	customOnChange,
-	...props
-}) => {
+const CheckBox = ({ id, label, customOnChange, ...props }: CheckBoxProps) => {
 	const [isChecked, setIsChecked] = useState(props.checked);
 
 	const onChangeHandler = () => {

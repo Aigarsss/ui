@@ -33,7 +33,7 @@ const NavBar = () => {
 						className="underline"
 						rel="noreferrer"
 					>
-						Code
+						Repo
 					</a>
 				</div>
 			</div>

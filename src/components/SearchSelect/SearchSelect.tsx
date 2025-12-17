@@ -12,7 +12,7 @@ interface SearchSelectProps {
 	placeholder?: string;
 }
 
-const SearchSelect: React.FC<SearchSelectProps> = ({ placeholder }) => {
+const SearchSelect = ({ placeholder }: SearchSelectProps) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const [value, setValue] = useState("");
 	const [isSearchOpen, setIsSearchOpen] = useState(false);

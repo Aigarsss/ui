@@ -3,8 +3,6 @@ import React from "react";
 const ReadmePage = () => {
 	return (
 		<div className="p-4">
-			<p className="mb-4">Just a couple of notes form my side.</p>
-
 			<h2 className="font-bold">UI/UX</h2>
 			<ul className="list-disc ml-4">
 				<li>
@@ -12,8 +10,8 @@ const ReadmePage = () => {
 					options.
 				</li>
 				<li>
-					Filter vals remembered when switching between products in the product
-					page.
+					Filter values are remembered when switching between products in the
+					product page.
 				</li>
 				<li>Very basic mobile styling, did not spend time on that.</li>
 			</ul>
@@ -33,9 +31,9 @@ const ReadmePage = () => {
 			<ul className="list-disc ml-4">
 				<li>
 					I wouldn't say that the setup in index.css is the best (like
-					text-text-2 is a pretty bad name for the class), but again, it works
-					for this project. In the case of a complete design system, that would
-					need to be refactored.
+					text-text-2 is a pretty bad name for the class), but it works for this
+					mini-project. In the case of a complete design system, that would need
+					to be refactored.
 				</li>
 				<li>
 					Added zod for schema validation, but I have not used it before, so I

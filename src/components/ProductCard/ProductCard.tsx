@@ -8,7 +8,7 @@ interface ProductCardProps {
 	product: Device;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard = ({ product }: ProductCardProps) => {
 	return (
 		<div className={classes.container}>
 			<Link to={`/${product.id}`} type="button">
