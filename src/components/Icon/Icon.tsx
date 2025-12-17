@@ -1,7 +1,6 @@
-import type React from "react";
+import clsx from "clsx";
 import type { ReactNode } from "react";
 import classes from "./Icon.module.scss";
-import clsx from "clsx";
 
 interface IconProps {
 	onClick: () => void;

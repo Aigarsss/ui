@@ -1,19 +1,9 @@
-import React from "react";
-
-import { LayoutGrid, List } from "lucide-react";
-import clsx from "clsx";
 import Filter from "@/components/Filter";
+import LayoutSwitcher from "@/components/LayoutSwitcher";
 import SearchSelect from "@/components/SearchSelect";
-import Icon from "@/components/Icon";
 import { useGetProducts } from "@/hooks/useGetProducts";
-import {
-	useAppliedLayout,
-	useProductsStoreActions,
-} from "@/stores/productsStore";
 
 const FilterAndSearch = () => {
-	const appliedLayout = useAppliedLayout();
-	const { setAppliedLayout } = useProductsStoreActions();
 
 	const { allDevices, filteredDevices } = useGetProducts();
 
@@ -28,24 +18,7 @@ const FilterAndSearch = () => {
 			</div>
 
 			<div className="flex items-center">
-				<Icon onClick={() => setAppliedLayout("list")}>
-					<List
-						size={20}
-						className={clsx({
-							"text-blue-6": appliedLayout === "list",
-							"text-neutral-8": appliedLayout !== "list",
-						})}
-					/>
-				</Icon>
-				<Icon onClick={() => setAppliedLayout("grid")}>
-					<LayoutGrid
-						size={20}
-						className={clsx({
-							"text-blue-6": appliedLayout === "grid",
-							"text-neutral-8": appliedLayout !== "grid",
-						})}
-					/>
-				</Icon>
+				<LayoutSwitcher />
 
 				<Filter classNames="ml-2" />
 			</div>
