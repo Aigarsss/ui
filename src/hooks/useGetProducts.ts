@@ -1,8 +1,8 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import type { Device } from "@/types/types";
-import { useAppliedFilters } from "@/stores/productsStore";
 import { useEffect, useState } from "react";
 import z from "zod";
+import { useAppliedFilters } from "@/stores/productsStore";
+import type { Device } from "@/types/types";
 
 export const useGetProducts = (): {
 	allDevices: Device[];

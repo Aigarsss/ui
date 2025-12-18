@@ -27,8 +27,9 @@ const Filter = ({ classNames }: { classNames?: string }) => {
 		}
 	});
 
-	const availableFilters = Array.from(lineMap.values())
-		.sort((a, b) => a.id.localeCompare(b.id));
+	const availableFilters = Array.from(lineMap.values()).sort((a, b) =>
+		a.id.localeCompare(b.id),
+	);
 
 	useClickAway(ref, () => {
 		setIsFilterOpen(false);

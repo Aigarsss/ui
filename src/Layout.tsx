@@ -1,8 +1,8 @@
-import { Outlet } from "react-router";
-import NavBar from "./components/NavBar";
-import ErrorBoundary from "@/components/ErrorBoundary";
 import { InfoIcon } from "lucide-react";
+import { Outlet } from "react-router";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import { useGetProducts } from "@/hooks/useGetProducts";
+import NavBar from "./components/NavBar";
 
 function Layout() {
 	const { queryError } = useGetProducts();

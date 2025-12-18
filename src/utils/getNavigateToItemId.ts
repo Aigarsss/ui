@@ -1,4 +1,4 @@
-import { Device } from "@/types/types";
+import type { Device } from "@/types/types";
 
 export const getNavigateToItemId = ({
 	type,

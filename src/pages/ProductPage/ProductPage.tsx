@@ -1,14 +1,14 @@
-import { redirect, useParams } from "react-router";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import type * as React from "react";
 import { useState } from "react";
-import classes from "./ProductPage.module.scss";
-import { getImageUrl } from "@/utils/getImageUrl";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { redirect, useParams } from "react-router";
+import HoveringButton from "@/components/HoveringButton";
+import ProductTextLine from "@/components/ProductTextLine";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import { useAppliedFilters } from "@/stores/productsStore";
-import ProductTextLine from "@/components/ProductTextLine";
-import HoveringButton from "@/components/HoveringButton";
+import { getImageUrl } from "@/utils/getImageUrl";
 import { getNavigateToItemId } from "@/utils/getNavigateToItemId";
+import classes from "./ProductPage.module.scss";
 
 const ProductPage = () => {
 	const [isShowingJson, setIsShowingJson] = useState(false);

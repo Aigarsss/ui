@@ -1,6 +1,6 @@
 const ReadmePage = () => {
 	return (
-		<div className="p-4">
+		<div className="mx-2 md:mx-8 my-8">
 			<h2 className="font-bold">UI/UX</h2>
 			<ul className="list-disc ml-4">
 				<li>

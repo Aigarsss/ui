@@ -1,9 +1,10 @@
 // https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
-import * as React from "react";
+
 import type { ErrorInfo } from "react";
+import * as React from "react";
 
 class ErrorBoundary extends React.Component {
-	// @ts-ignore
+	// @ts-expect-error
 	constructor(props) {
 		super(props);
 		this.state = { hasError: false };
