@@ -12,7 +12,7 @@ const NavBar = () => {
 				</Link>
 			</div>
 
-			<div className="flex items-center text-text-3 mr-8">
+			<div className="flex items-center text-text-3 pb-2 md:pb-0 md:mr-8">
 				<span>Aigars Uplejs</span>
 
 				<CircleSmall size={16} className="mx-2" />

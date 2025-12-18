@@ -11,12 +11,12 @@ const FilterAndSearch = () => {
 			<div className="flex flex-col md:flex-row md:items-center">
 				<SearchSelect placeholder="Search" />
 
-				<div className="text-gray-4 text-xs ml-4">
+				<div className="text-gray-4 text-xs pt-2 md:pt-0 md:ml-4">
 					Showing {filteredDevices.length} of {allDevices.length} devices
 				</div>
 			</div>
 
-			<div className="flex items-center">
+			<div className="flex items-center py-2 md:py-0">
 				<LayoutSwitcher />
 
 				<Filter classNames="ml-2" />

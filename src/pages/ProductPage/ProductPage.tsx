@@ -24,10 +24,9 @@ const ProductPage = () => {
 		redirect("/");
 		return;
 	}
-
 	return (
 		<>
-			<div className="flex justify-between items-center h-[64px] mx-8">
+			<div className="flex justify-between items-center h-[64px] mx-2 md:mx-8">
 				<HoveringButton to="/">
 					<ChevronLeft size={20} className="text-neutral-8" />
 					Back
