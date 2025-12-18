@@ -121,7 +121,7 @@ const SearchSelect = ({ placeholder }: SearchSelectProps) => {
 													key={key}
 													className="flex justify-between py-1.5 hover:bg-neutral-2"
 												>
-													<span className="text-text-2 text-sm whitespace-nowrap max-w-[130px] overflow-hidden overflow-ellipsis">
+													<span className="text-text-2 text-sm whitespace-nowrap max-w-[130px] sm:max-w-100 md:max-w-[130px] overflow-hidden overflow-ellipsis">
 														{highlightMatch(searchResults[index].product.name)}
 													</span>
 													<span className="flex items-end text-text-3 text-sm pr-2">
