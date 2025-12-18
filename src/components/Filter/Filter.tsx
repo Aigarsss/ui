@@ -17,18 +17,18 @@ const Filter = ({ classNames }: { classNames?: string }) => {
 	const appliedFilters = useAppliedFilters();
 	const { setAppliedFilters } = useProductsStoreActions();
 
-	const availableFilters = allDevices
-		.filter(
-			(obj, index, self) =>
-				index ===
-				self.findIndex(
-					(item) =>
-						item.line?.id === obj.line?.id &&
-						item.line?.name === obj.line?.name,
-				),
-		)
-		.map((item) => item.line)
-		.sort((a, b) => (a.id > b.id ? 1 : -1));
+	const lineMap = new Map();
+
+	allDevices.forEach((item) => {
+		const line = item.line;
+
+		if (line?.id && !lineMap.has(line.id)) {
+			lineMap.set(line.id, line);
+		}
+	});
+
+	const availableFilters = Array.from(lineMap.values())
+		.sort((a, b) => a.id.localeCompare(b.id));
 
 	useClickAway(ref, () => {
 		setIsFilterOpen(false);
