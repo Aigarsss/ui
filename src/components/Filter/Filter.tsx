@@ -1,14 +1,13 @@
-import React, { useRef, useState } from "react";
-import classes from "./Filter.module.scss";
-import { useClickAway } from "react-use";
-
 import clsx from "clsx";
+import { useRef, useState } from "react";
+import { useClickAway } from "react-use";
 import CheckBox from "@/components/CheckBox";
+import { useGetProducts } from "@/hooks/useGetProducts";
 import {
 	useAppliedFilters,
 	useProductsStoreActions,
 } from "@/stores/productsStore";
-import { useGetProducts } from "@/hooks/useGetProducts";
+import classes from "./Filter.module.scss";
 
 const Filter = ({ classNames }: { classNames?: string }) => {
 	const ref = useRef<HTMLDivElement | null>(null);

@@ -4,7 +4,6 @@ import SearchSelect from "@/components/SearchSelect";
 import { useGetProducts } from "@/hooks/useGetProducts";
 
 const FilterAndSearch = () => {
-
 	const { allDevices, filteredDevices } = useGetProducts();
 
 	return (

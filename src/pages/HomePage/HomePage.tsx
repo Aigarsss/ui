@@ -1,9 +1,9 @@
+import { LoaderIcon } from "lucide-react";
 import FilterAndSearch from "@/components/FilterAndSearch";
 import ProductGrid from "@/components/ProductLayout/ProductGrid";
 import ProductList from "@/components/ProductLayout/ProductList";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import { useAppliedLayout } from "@/stores/productsStore";
-import { LoaderIcon } from "lucide-react";
 
 const HomePage = () => {
 	const appliedLayout = useAppliedLayout();

@@ -1,11 +1,12 @@
-import React from "react";
 import { useNavigate } from "react-router";
-import classes from "./ProductList.module.scss";
+import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
+import type { Device } from "@/types/types";
 import { getImageUrl } from "@/utils/getImageUrl";
-import { Device } from "@/types/types";
+import classes from "./ProductList.module.scss";
 
 const ProductList = ({ filteredDevices }: { filteredDevices: Device[] }) => {
 	const navigate = useNavigate();
+	const { visibleItemsCount } = useInfiniteScroll({ filteredDevices });
 
 	return (
 		<table className={classes.table}>
@@ -18,7 +19,7 @@ const ProductList = ({ filteredDevices }: { filteredDevices: Device[] }) => {
 			</thead>
 
 			<tbody>
-				{filteredDevices?.map((device) => {
+				{filteredDevices?.slice(0, visibleItemsCount).map((device) => {
 					return (
 						<tr
 							key={device.id}

@@ -1,5 +1,5 @@
-import React, { type ReactNode, useState } from "react";
 import clsx from "clsx";
+import type { ReactNode } from "react";
 import { Link } from "react-router";
 
 interface HoveringButtonProps {

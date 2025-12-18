@@ -1,8 +1,6 @@
-import React from "react";
-
+import { CircleSmall, GitBranch } from "lucide-react";
 import { Link } from "react-router";
 import Logo from "@/components/Logo";
-import { CircleSmall, GitBranch } from "lucide-react";
 
 const NavBar = () => {
 	return (

@@ -1,5 +1,3 @@
-import React from "react";
-
 const ReadmePage = () => {
 	return (
 		<div className="p-4">
@@ -36,8 +34,7 @@ const ReadmePage = () => {
 					to be refactored.
 				</li>
 				<li>
-					Added zod for schema validation, but I have not used it before, so I
-					am not 100% sure this would work.
+					Added "infinite" scroll to list views, switching seemed snappier.
 				</li>
 			</ul>
 		</div>
