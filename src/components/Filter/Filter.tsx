@@ -64,12 +64,13 @@ const Filter = ({ classNames }: { classNames?: string }) => {
 									checked={appliedFilters.includes(line.id)}
 									label={line.name}
 									customOnChange={(val) => {
+										const appliedFiltersSet = new Set(appliedFilters);
+
 										if (val) {
-											setAppliedFilters([...appliedFilters, line.id]);
+											setAppliedFilters([...appliedFiltersSet.add(line.id)]);
 										} else {
-											setAppliedFilters(
-												appliedFilters.filter((item) => item !== line.id),
-											);
+											appliedFiltersSet.delete(line.id);
+											setAppliedFilters([...appliedFiltersSet]);
 										}
 									}}
 								/>
