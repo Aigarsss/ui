@@ -36,13 +36,13 @@ const Filter = ({ classNames }: { classNames?: string }) => {
 	});
 
 	return (
-		<div className={clsx(classes.container, classNames)}>
+		<div ref={ref} className={clsx(classes.container, classNames)}>
 			<button
 				className={clsx(classes.trigger, {
 					[classes.active]: isFilterOpen,
 				})}
 				type="button"
-				onClick={() => setIsFilterOpen(true)}
+				onClick={() => setIsFilterOpen(!isFilterOpen)}
 			>
 				Filter
 				{appliedFilters.length > 0 && (
@@ -52,7 +52,7 @@ const Filter = ({ classNames }: { classNames?: string }) => {
 				)}
 			</button>
 			{isFilterOpen && (
-				<div ref={ref} className={classes.dropdown}>
+				<div className={classes.dropdown}>
 					<div className="text-text-1 font-bold text-sm">Product line</div>
 
 					<div className="grid gap-2 my-4">
