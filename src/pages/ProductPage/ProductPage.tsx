@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type * as React from "react";
 import { useState } from "react";
-import { redirect, useParams } from "react-router";
+import { useParams } from "react-router";
 import HoveringButton from "@/components/HoveringButton";
 import ProductTextLine from "@/components/ProductTextLine";
 import { useGetProducts } from "@/hooks/useGetProducts";
@@ -20,12 +20,18 @@ const ProductPage = () => {
 		(product) => product.id === productId,
 	);
 
-	console.log(selectedDevice)
-
-	if (!selectedDevice) {
-		redirect("/");
-		return;
-	}
+	if (!selectedDevice)
+		return (
+			<div className="flex flex-col m-2 md:m-8">
+				<div className="flex mb-2">
+					<HoveringButton to="/">
+						<ChevronLeft size={20} className="text-neutral-8" />
+						Back
+					</HoveringButton>
+				</div>
+				Device not found
+			</div>
+		);
 
 	return (
 		<>
