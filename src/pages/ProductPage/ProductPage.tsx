@@ -20,10 +20,13 @@ const ProductPage = () => {
 		(product) => product.id === productId,
 	);
 
+	console.log(selectedDevice)
+
 	if (!selectedDevice) {
 		redirect("/");
 		return;
 	}
+
 	return (
 		<>
 			<div className="flex justify-between items-center h-[64px] mx-2 md:mx-8">
@@ -51,8 +54,7 @@ const ProductPage = () => {
 				</div>
 			</div>
 
-			{/* Added key for react motion */}
-			<div key={selectedDevice.id} className={classes.container}>
+			<div className={classes.container}>
 				<div className="flex flex-col md:flex-row mx-4 md:mx-0">
 					<div className={classes.imageContainer}>
 						<img
@@ -130,7 +132,7 @@ const ProductPage = () => {
 				</div>
 
 				{isShowingJson && (
-					<pre className="bg-neutral-3 text-sm mt-8 p-4">
+					<pre className="bg-neutral-3 rounded-md text-sm mt-8 p-4 text-wrap mx-2 md:mx-0">
 						{JSON.stringify(selectedDevice, undefined, 2)}
 					</pre>
 				)}

@@ -10,7 +10,11 @@
     height: 292px;
     background: var(--color-neutral-1);
     border-radius: var(--border-radius-medium);
-    margin-right: 32px;
+    margin: 0 auto 16px auto;
+
+    @media screen and (min-width: 768px) {
+      margin: 0 32px 0 0;
+    }
 
     img {
       height: 100%;
